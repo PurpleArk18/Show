@@ -12,6 +12,9 @@
 #include "AbilitySystem/SAttributeSet.h"
 #include "MVVMGameSubsystem.h"
 #include "AbilitySystem/SGameplayTags.h"
+#include "Engine/LocalPlayer.h"
+#include "Engine/World.h"
+#include "Engine/GameInstance.h"
 
 
 

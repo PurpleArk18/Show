@@ -3,6 +3,7 @@
 
 #include "Interactables/SExplosiveBarrel.h"
 #include "PhysicsEngine/RadialForceComponent.h"
+#include "Components/StaticMeshComponent.h"
 
 // Sets default values
 ASExplosiveBarrel::ASExplosiveBarrel()

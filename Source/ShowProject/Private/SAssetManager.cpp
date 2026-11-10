@@ -3,6 +3,7 @@
 
 #include "SAssetManager.h"
 #include "AbilitySystem/SGameplayTags.h"
+#include "Engine/Engine.h"
 
 USAssetManager& USAssetManager::Get()
 {

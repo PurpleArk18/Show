@@ -25,10 +25,10 @@ void ASGameMode::LoadSavedGame()
 
 		if (CurrentSaveGame == nullptr)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Failed to load data"));
+			//UE_LOG(LogTemp, Warning, TEXT("Failed to load data"));
 			return;
 		}
-		UE_LOG(LogTemp, Log, TEXT("Loaded data"));
+		//UE_LOG(LogTemp, Log, TEXT("Loaded data"));
 	}
 	else
 	{

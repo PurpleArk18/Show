@@ -121,7 +121,7 @@ void ASPlayerCharacter::Look(const FInputActionValue& ActionValue)
 {
 	const FVector2D LookValue = ActionValue.Get<FVector2D>();
 
-	//UE_LOG(LogTemp, Log, TEXT("Look value: %s"), *LookValue.ToString());
+	////UE_LOG(LogTemp, Log, TEXT("Look value: %s"), *LookValue.ToString());
 
 	if (LookValue.X != 0.f)
 	{

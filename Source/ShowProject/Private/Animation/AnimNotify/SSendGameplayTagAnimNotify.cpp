@@ -5,6 +5,7 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "General/SBaseCharacter.h"
+#include "Components/SkeletalMeshComponent.h"
 
 void USSendGameplayTagAnimNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
 {
@@ -16,10 +17,10 @@ void USSendGameplayTagAnimNotify::Notify(USkeletalMeshComponent* MeshComp, UAnim
         Payload.Instigator = SCharacter;
         Payload.EventTag = EventTag;
         UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(SCharacter, EventTag, Payload);
-        UE_LOG(LogTemp, Log, TEXT("Event notify sent"));
+        //UE_LOG(LogTemp, Log, TEXT("Event notify sent"));
     }
     else
     {
-        UE_LOG(LogTemp, Log, TEXT("Event notify not sent"));
+        //UE_LOG(LogTemp, Log, TEXT("Event notify not sent"));
     }
 }

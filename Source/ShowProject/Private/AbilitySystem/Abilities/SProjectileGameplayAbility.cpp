@@ -7,6 +7,8 @@
 #include "Magic/SProjectile.h"
 #include "AbilitySystem/Tasks/SATPlayMontageAndWaitForEvent.h"
 #include "AbilitySystem/SGameplayTags.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Engine/World.h"
 
 void USProjectileGameplayAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData)
 {

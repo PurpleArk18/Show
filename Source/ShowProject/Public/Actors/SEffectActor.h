@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-
 #include "Interfaces/SInteractable.h"
+#include "Components/MeshComponent.h"
 #include "SEffectActor.generated.h"
 
 class UGameplayEffect;

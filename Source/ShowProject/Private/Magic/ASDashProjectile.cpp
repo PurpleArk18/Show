@@ -6,6 +6,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Particles/ParticleSystemComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "TimerManager.h"
+#include "GameFramework/Pawn.h"
 
 AASDashProjectile::AASDashProjectile()
 {
