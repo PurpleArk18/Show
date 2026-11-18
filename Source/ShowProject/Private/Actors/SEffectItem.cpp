@@ -1,7 +1,7 @@
 // Copyright to Andres Echeverri 2023
 
 
-#include "Actors/SEffectActor.h"
+#include "Actors/SEffectItem.h"
 #include "AbilitySystemInterface.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"
@@ -9,30 +9,21 @@
 
 
 // Sets default values
-ASEffectActor::ASEffectActor()
+ASEffectItem::ASEffectItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-	SetReplicates(true);
-
-	SceneComponent = CreateDefaultSubobject<USceneComponent>("SceneRoot");
-	Mesh = CreateDefaultSubobject<UMeshComponent>("Mesh");
-	//RootComponent = SceneComponent;
-	if (Mesh)
-	{
-		Mesh->SetupAttachment(RootComponent);
-	}
 
 }
 
 // Called when the game starts or when spawned
-void ASEffectActor::BeginPlay()
+void ASEffectItem::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
-void ASEffectActor::ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect> EffectClass)
+void ASEffectItem::ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect> EffectClass)
 {
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Target);
 
@@ -43,5 +34,15 @@ void ASEffectActor::ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEff
 	EffectContextHandle.AddSourceObject(this);
 	FGameplayEffectSpecHandle EffectSpecHandle = TargetASC->MakeOutgoingSpec(EffectClass, 1.0f, EffectContextHandle);
 	TargetASC->ApplyGameplayEffectSpecToSelf(*EffectSpecHandle.Data.Get());
+}
+
+void ASEffectItem::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+
+}
+
+void ASEffectItem::OnSphereOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+
 }
 

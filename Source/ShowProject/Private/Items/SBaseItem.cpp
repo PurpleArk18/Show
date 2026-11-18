@@ -2,6 +2,8 @@
 
 
 #include "Items/SBaseItem.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 ASBaseItem::ASBaseItem()
@@ -13,13 +15,31 @@ ASBaseItem::ASBaseItem()
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetupAttachment(RootComponent);
 	Mesh->SetIsReplicated(true);
+
+	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
+	SphereCollider->SetupAttachment(RootComponent);
+	SphereCollider->SetIsReplicated(true);
+
 }
 
 // Called when the game starts or when spawned
 void ASBaseItem::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SphereCollider->OnComponentBeginOverlap.AddDynamic(this, &ASBaseItem::OnSphereOverlapBegin);
+	SphereCollider->OnComponentEndOverlap.AddDynamic(this, &ASBaseItem::OnSphereOverlapEnd);
 	
+}
+
+void ASBaseItem::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+
+}
+
+void ASBaseItem::OnSphereOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+
 }
 
 // Called every frame

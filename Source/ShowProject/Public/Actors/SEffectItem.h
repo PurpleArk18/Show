@@ -3,21 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "Items/SBaseItem.h"
 #include "Interfaces/SInteractable.h"
 #include "Components/MeshComponent.h"
-#include "SEffectActor.generated.h"
+#include "SEffectItem.generated.h"
 
 class UGameplayEffect;
 
 UCLASS()
-class SHOWPROJECT_API ASEffectActor : public AActor , public ISInteractable
+class SHOWPROJECT_API ASEffectItem : public ASBaseItem, public ISInteractable
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ASEffectActor();
+	ASEffectItem();
 
 	void Interaction_Implementation(APawn* InstigatorPawn);
 
@@ -25,16 +25,13 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<USceneComponent> SceneComponent;
-
-	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<UMeshComponent> Mesh;
-
 	UFUNCTION(BlueprintCallable)
 	void ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect>  EffectClass);
 
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	TSubclassOf<UGameplayEffect> InstantEffectClass;
+
+	virtual void OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
+	virtual void OnSphereOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
 
 };

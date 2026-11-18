@@ -6,6 +6,7 @@
 #include "UObject/Interface.h"
 #include "SStorable.generated.h"
 
+class UTexture2D;
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class USStorable : public UInterface
@@ -28,4 +29,11 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void Remove();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	UTexture2D* GetStorageIcon();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	FText GetStorageName();
+
 };
