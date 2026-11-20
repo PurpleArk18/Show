@@ -3,6 +3,7 @@
 
 #include "General/SBaseCharacter.h"
 #include "AbilitySystem/SAbilitySystemComponent.h"
+#include "Components/SInventoryComponent.h"
 
 // Sets default values
 ASBaseCharacter::ASBaseCharacter()
@@ -15,6 +16,15 @@ ASBaseCharacter::ASBaseCharacter()
 UAbilitySystemComponent* ASBaseCharacter::GetAbilitySystemComponent() const
 {
 	return nullptr;
+}
+
+USInventoryComponent* ASBaseCharacter::GetInventoryComponent() const
+{
+	return nullptr;
+}
+
+void ASBaseCharacter::AddItemToInventory(const USStorableData& ItemData)
+{
 }
 
 // Called when the game starts or when spawned

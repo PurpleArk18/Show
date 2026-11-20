@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
-
 #include "General/SBaseCharacter.h"
 #include "SPlayerCharacter.generated.h"
 
@@ -16,6 +15,7 @@ class UInputAction;
 class USInteractionComponent;
 class UAnimMontage;
 class USInputConfig;
+class USInventoryComponent;
 
 UCLASS()
 class SHOWPROJECT_API ASPlayerCharacter : public ASBaseCharacter
@@ -76,6 +76,10 @@ protected:
 	virtual void OnRep_PlayerState() override;
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	USInventoryComponent* GetInventoryComponent() const;
+
+	void AddItemToInventory(const USStorableData* ItemData);
 
 public:	
 	// Called every frame

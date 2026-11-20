@@ -4,9 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
+#include "Items/SItemsData.h"
 #include "SStorable.generated.h"
 
 class UTexture2D;
+enum class EItemID : uint8;
+class ISInventoryInterface;
+
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class USStorable : public UInterface
@@ -25,15 +29,21 @@ class SHOWPROJECT_API ISStorable
 public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void Store();
+	void Store(const TScriptInterface<ISInventoryInterface>& Inventory);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	void Remove();
+	void Remove(const TScriptInterface<ISInventoryInterface>& Inventory);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	UTexture2D* GetStorageIcon();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FText GetStorageName();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	FText GetStorageDescription();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	EItemID GetStorageID();
 
 };

@@ -17,6 +17,9 @@ public:
 	}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 Amount;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

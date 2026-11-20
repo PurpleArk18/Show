@@ -15,6 +15,8 @@
 #include "Engine/LocalPlayer.h"
 #include "Engine/World.h"
 #include "Engine/GameInstance.h"
+#include "Kismet/GameplayStatics.h"
+
 
 
 
@@ -90,10 +92,11 @@ void ASPlayerController::OnSecondaryAction()
 
 void ASPlayerController::OnPause()
 {
+    bIsPaused = !bIsPaused;
+	UGameplayStatics::SetGamePaused(GetWorld(), bIsPaused);
     ASHUD* Hud = GetHUD<ASHUD>();
     if (Hud)
     {
-        bIsPaused = !bIsPaused;
         Hud->TogglePause(bIsPaused);
     }
 }

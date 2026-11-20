@@ -9,7 +9,8 @@
 #include "Player/SPlayerState.h"
 #include "AbilitySystemComponent.h"
 #include "Input/SInputComponent.h"
-
+#include "Data/SStorableData.h"
+#include "Components/SInventoryComponent.h"
 #include "AbilitySystem/SGameplayTags.h"
 
 // Sets default values
@@ -51,6 +52,22 @@ UAbilitySystemComponent* ASPlayerCharacter::GetAbilitySystemComponent() const
 	ASPlayerState* SPlayerState = GetPlayerState<ASPlayerState>();
 	check(SPlayerState);
 	return SPlayerState->GetAbilitySystemComponent();
+}
+
+USInventoryComponent* ASPlayerCharacter::GetInventoryComponent() const
+{
+	ASPlayerState* SPlayerState = GetPlayerState<ASPlayerState>();
+	check(SPlayerState);
+	return SPlayerState->GetInventoryComponent();
+}
+
+void ASPlayerCharacter::AddItemToInventory(const USStorableData* ItemData)
+{
+	USInventoryComponent* InventoryComponent = GetInventoryComponent();
+	if (InventoryComponent)
+	{
+		InventoryComponent->AddItem(ItemData->StorageID);
+	}
 }
 
 // Called when the game starts or when spawned

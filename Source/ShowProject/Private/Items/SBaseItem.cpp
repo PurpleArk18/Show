@@ -11,14 +11,15 @@ ASBaseItem::ASBaseItem()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	SetReplicates(true);
+	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
+	
+	SphereCollider->SetIsReplicated(true);
+	SetRootComponent(SphereCollider);
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
-	Mesh->SetupAttachment(RootComponent);
 	Mesh->SetIsReplicated(true);
+	Mesh->SetupAttachment(RootComponent);
 
-	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
-	SphereCollider->SetupAttachment(RootComponent);
-	SphereCollider->SetIsReplicated(true);
 
 }
 
@@ -28,24 +29,8 @@ void ASBaseItem::BeginPlay()
 	Super::BeginPlay();
 
 	SphereCollider->OnComponentBeginOverlap.AddDynamic(this, &ASBaseItem::OnSphereOverlapBegin);
-	SphereCollider->OnComponentEndOverlap.AddDynamic(this, &ASBaseItem::OnSphereOverlapEnd);
-	
 }
 
 void ASBaseItem::OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-
 }
-
-void ASBaseItem::OnSphereOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-
-}
-
-// Called every frame
-void ASBaseItem::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
-}
-

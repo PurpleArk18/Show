@@ -5,14 +5,16 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "Interfaces/SInventoryInterface.h"
 #include "SBaseCharacter.generated.h"
 
 class UAbilitySystemComponent;
 class USAttributeSet;
 class USGameplayAbility;
+class USStorableData;
 
 UCLASS(Abstract)
-class SHOWPROJECT_API ASBaseCharacter : public ACharacter, public IAbilitySystemInterface
+class SHOWPROJECT_API ASBaseCharacter : public ACharacter, public IAbilitySystemInterface, public ISInventoryInterface
 {
 	GENERATED_BODY()
 
@@ -23,6 +25,10 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 	USAttributeSet* GetAttributeSet() const { return AttributeSet; }
+
+	USInventoryComponent* GetInventoryComponent() const;
+
+	void AddItemToInventory(const USStorableData& ItemData);
 
 protected:
 	// Called when the game starts or when spawned

@@ -5,13 +5,16 @@
 #include "CoreMinimal.h"
 #include "Items/SBaseItem.h"
 #include "Interfaces/SInteractable.h"
+#include "Interfaces/SStorable.h"
 #include "Components/MeshComponent.h"
 #include "SEffectItem.generated.h"
 
-class UGameplayEffect;
+class USStorableData;
+class UTexture2D;
+class ISInventoryInterface;
 
 UCLASS()
-class SHOWPROJECT_API ASEffectItem : public ASBaseItem, public ISInteractable
+class SHOWPROJECT_API ASEffectItem : public ASBaseItem, public ISInteractable, public ISStorable
 {
 	GENERATED_BODY()
 	
@@ -31,7 +34,13 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Effects")
 	TSubclassOf<UGameplayEffect> InstantEffectClass;
 
-	virtual void OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
-	virtual void OnSphereOverlapEnd(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex) override;
+	UPROPERTY(EditDefaultsOnly, Category = "Inventory")
+	TObjectPtr<USStorableData> StorableData;
 
+	virtual void OnSphereOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) override;
+	void Store_Implementation(const TScriptInterface<ISInventoryInterface>& Inventory);
+	void Remove_Implementation(const TScriptInterface<ISInventoryInterface>& Inventory);
+	UTexture2D* GetStorageIcon_Implementation();
+	FText GetStorageName_Implementation();
+	FText GetStorageDescription_Implementation();
 };

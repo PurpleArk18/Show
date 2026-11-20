@@ -4,6 +4,7 @@
 #include "Components/SInventoryComponent.h"
 #include "Net/UnrealNetwork.h"
 
+
 // Sets default values for this component's properties
 USInventoryComponent::USInventoryComponent()
 {
@@ -15,7 +16,7 @@ USInventoryComponent::USInventoryComponent()
 	// ...
 }
 
-USInventoryComponent::USInventoryComponent(TMap<ItemID, int> StartItems)
+USInventoryComponent::USInventoryComponent(TMap<EItemID, int> StartItems)
 {
 	PrimaryComponentTick.bCanEverTick = false;
 	SetIsReplicatedByDefault(true);
@@ -42,7 +43,7 @@ void USInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	// ...
 }
 
-void USInventoryComponent::AddItem(ItemID item)
+void USInventoryComponent::AddItem(EItemID item)
 {
 	if (ItemContainer.Num() < MaxCapacity)
 	{
@@ -57,7 +58,7 @@ void USInventoryComponent::AddItem(ItemID item)
 	}
 }
 
-void USInventoryComponent::RemoveItem(ItemID item)
+void USInventoryComponent::RemoveItem(EItemID item)
 {
 	if (ItemContainer.Contains(item))
 	{
@@ -72,9 +73,19 @@ void USInventoryComponent::RemoveItem(ItemID item)
 	}
 }
 
-bool USInventoryComponent::HasItem(ItemID item)
+bool USInventoryComponent::HasItem(EItemID item)
 {
 	return ItemContainer.Contains(item);
+}
+
+int USInventoryComponent::GetMaxCapacity() const
+{
+	return MaxCapacity;
+}
+
+int USInventoryComponent::GetAvailableCapacity()
+{
+	return MaxCapacity - ItemContainer.Num();
 }
 
 void USInventoryComponent::IncreaseMaxCapacity(int AmountToIncrease)

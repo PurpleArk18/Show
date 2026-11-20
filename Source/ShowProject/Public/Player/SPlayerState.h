@@ -5,12 +5,14 @@
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerState.h"
 #include "AbilitySystemInterface.h"
+#include "Interfaces/SInventoryInterface.h"
 #include "SPlayerState.generated.h"
 
 class USAbilitySystemComponent;
 class USAttributeSet;
 struct FOnAttributeChangeData;
 class USGameplayAbility;
+class USInventoryComponent;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnCreditsChangedSignature, ASPlayerState*, PlayerState, int32, NewCredits, int32, Delta);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnXPChangedSignature, ASPlayerState*, PlayerState, int32, NewXP, int32, Delta);
@@ -19,7 +21,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnLevelChangedSignature, ASPlayerS
  * 
  */
 UCLASS()
-class SHOWPROJECT_API ASPlayerState : public APlayerState, public IAbilitySystemInterface
+class SHOWPROJECT_API ASPlayerState : public APlayerState, public IAbilitySystemInterface, public ISInventoryInterface
 {
 	GENERATED_BODY()
 
@@ -30,6 +32,9 @@ protected:
 
 	UPROPERTY()
 	TObjectPtr<USAttributeSet> AttributeSet;
+
+	UPROPERTY()
+	TObjectPtr<USInventoryComponent> InventoryComponent;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Credits", ReplicatedUsing="OnRep_Credits")
 	int32 Credits;
@@ -54,6 +59,8 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 	USAttributeSet* GetAttributeSet() const { return AttributeSet; }
+
+	USInventoryComponent* GetInventoryComponent() const;
 
 	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
 	TArray<TSubclassOf<USGameplayAbility>> StartingAbilities;

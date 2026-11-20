@@ -5,7 +5,7 @@
 #include "AbilitySystem/SAbilitySystemComponent.h"
 #include "AbilitySystem/SAttributeSet.h"
 #include "Net/UnrealNetwork.h"
-
+#include "GameFramework/Pawn.h"
 #include "GameplayEffectTypes.h"
 
 
@@ -38,6 +38,7 @@ void ASPlayerState::PostInitializeComponents()
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(USAttributeSet::GetHealthAttribute()).AddUObject(this, &ASPlayerState::OnHealthChanged);
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(USAttributeSet::GetManaAttribute()).AddUObject(this, &ASPlayerState::OnManaChanged);
 }
+
 void ASPlayerState::OnHealthChanged(const FOnAttributeChangeData& Data)
 {
 
@@ -61,6 +62,11 @@ void ASPlayerState::BeginPlay()
 UAbilitySystemComponent* ASPlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
+}
+
+USInventoryComponent* ASPlayerState::GetInventoryComponent() const
+{
+	return InventoryComponent;
 }
 
 int32 ASPlayerState::GetCredits() const

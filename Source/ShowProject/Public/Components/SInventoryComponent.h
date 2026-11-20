@@ -17,7 +17,7 @@ public:
 	// Sets default values for this component's properties
 	USInventoryComponent();
 
-	USInventoryComponent(TMap<ItemID, int> StartItems);
+	USInventoryComponent(TMap<EItemID, int> StartItems);
 
 protected:
 	UPROPERTY(Replicated)
@@ -26,23 +26,23 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	TMap<ItemID, int> ItemContainer = TMap<ItemID, int>();
+	TMap<EItemID, int> ItemContainer = TMap<EItemID, int>();
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	void AddItem(ItemID item);
+	void AddItem(EItemID item);
 
-	void RemoveItem(ItemID item);
+	void RemoveItem(EItemID item);
 
-	bool HasItem(ItemID item); 
+	bool HasItem(EItemID item); 
 	
 	UFUNCTION(BlueprintCallable)
-	int GetMaxCapacity() const { return MaxCapacity; } const
+	int GetMaxCapacity() const;
 	
 	UFUNCTION(BlueprintCallable)
-	int GetAvailableCapacity() { return MaxCapacity - ItemContainer.Num(); }
+	int GetAvailableCapacity();
 
 	UFUNCTION()
 	void IncreaseMaxCapacity(int AmountToIncrease);
