@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "Items/SItemsData.h"
+#include "Data/SItemsDataTypes.h"
 #include "SInventoryComponent.generated.h"
 
 
-UCLASS( ClassGroup=(Inventory), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup=(Inventory), meta=(BlueprintSpawnableComponent))
 class SHOWPROJECT_API USInventoryComponent : public UActorComponent
 {
 	GENERATED_BODY()
@@ -29,8 +29,6 @@ protected:
 	TMap<EItemID, int> ItemContainer = TMap<EItemID, int>();
 
 public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void AddItem(EItemID item);
 
@@ -46,4 +44,7 @@ public:
 
 	UFUNCTION()
 	void IncreaseMaxCapacity(int AmountToIncrease);
+
+	UFUNCTION(BlueprintCallable)
+	TMap<EItemID, int> GetCurrentItems() const;
 };

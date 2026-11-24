@@ -92,5 +92,7 @@ Builds/
 # Extra content
 Content/ExampleContent/*
 Content/Paragon*/
-
+Content/Ignore/*
+Content/__ExternalActors__/*
+Content/__ExternalObjects__/*
 

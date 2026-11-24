@@ -34,15 +34,6 @@ void USInventoryComponent::BeginPlay()
 	
 }
 
-
-// Called every frame
-void USInventoryComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
-{
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
-}
-
 void USInventoryComponent::AddItem(EItemID item)
 {
 	if (ItemContainer.Num() < MaxCapacity)
@@ -91,6 +82,11 @@ int USInventoryComponent::GetAvailableCapacity()
 void USInventoryComponent::IncreaseMaxCapacity(int AmountToIncrease)
 {
 	MaxCapacity += AmountToIncrease;
+}
+
+TMap<EItemID, int> USInventoryComponent::GetCurrentItems() const
+{
+	return ItemContainer;
 }
 
 void USInventoryComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

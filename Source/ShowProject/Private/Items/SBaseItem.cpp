@@ -12,15 +12,12 @@ ASBaseItem::ASBaseItem()
 	PrimaryActorTick.bCanEverTick = true;
 	SetReplicates(true);
 	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
-	
 	SphereCollider->SetIsReplicated(true);
-	SetRootComponent(SphereCollider);
-
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetIsReplicated(true);
-	Mesh->SetupAttachment(RootComponent);
 
-
+	SetRootComponent(Mesh);
+	SphereCollider->SetupAttachment(Mesh);
 }
 
 // Called when the game starts or when spawned

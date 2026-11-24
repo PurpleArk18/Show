@@ -1,7 +1,7 @@
 // Copyright to Andres Echeverri 2023
 
 
-#include "Actors/SEffectItem.h"
+#include "Items/SEffectItem.h"
 #include "AbilitySystemInterface.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"

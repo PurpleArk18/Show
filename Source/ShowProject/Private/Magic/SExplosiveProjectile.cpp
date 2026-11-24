@@ -3,12 +3,13 @@
 
 #include "Magic/SExplosiveProjectile.h"
 #include "Kismet/GameplayStatics.h"
+#include "NiagaraFunctionLibrary.h"
 
 void ASExplosiveProjectile::Explode_Implementation()
 {
 	if (!IsPendingKillPending())
 	{
-		UGameplayStatics::SpawnEmitterAtLocation(this, TriggerVFX, GetActorLocation(), GetActorRotation());
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, TriggerVFX, GetActorLocation(), GetActorRotation());
 		Destroy();
 	}
 }

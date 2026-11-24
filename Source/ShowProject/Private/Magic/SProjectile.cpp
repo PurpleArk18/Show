@@ -4,9 +4,12 @@
 #include "Magic/SProjectile.h"
 #include "Components/SphereComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Particles/ParticleSystemComponent.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
+#include "NiagaraSystem.h"
 #include "Components/SAttributeComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameFramework/Pawn.h"
 
 // Sets default values
 ASProjectile::ASProjectile()
@@ -22,7 +25,7 @@ ASProjectile::ASProjectile()
 	Sphere->SetSphereRadius(SphereRadius);
 	Sphere->SetIsReplicated(true);
 
-	ParticleSystem = CreateDefaultSubobject<UParticleSystemComponent>("Particle System");
+	ParticleSystem = CreateDefaultSubobject<UNiagaraComponent>("Particle System");
 	ParticleSystem->SetupAttachment(RootComponent);
 	ParticleSystem->SetIsReplicated(true);
 

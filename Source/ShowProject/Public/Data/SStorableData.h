@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "Items/SItemsData.h"
+#include "Data/SItemsDataTypes.h"
 #include "SStorableData.generated.h"
 
 class UTexture2D;

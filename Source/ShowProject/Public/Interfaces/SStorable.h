@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "Items/SItemsData.h"
+#include "Data/SItemsDataTypes.h"
 #include "SStorable.generated.h"
 
 class UTexture2D;

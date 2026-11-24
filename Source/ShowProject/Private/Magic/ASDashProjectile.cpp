@@ -4,7 +4,8 @@
 #include "Magic/ASDashProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
-#include "Particles/ParticleSystemComponent.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "TimerManager.h"
 #include "GameFramework/Pawn.h"
@@ -28,9 +29,9 @@ void AASDashProjectile::Trigger()
 {
 	GetWorldTimerManager().ClearTimer(TimerHandle_DelayedDetonate);
 
-	UGameplayStatics::SpawnEmitterAtLocation(this, TriggerVFX, GetActorLocation(), GetActorRotation());
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, TriggerVFX, GetActorLocation(), GetActorRotation());
 
-	ParticleSystem->DeactivateSystem();
+	ParticleSystem->Deactivate();
 
 	ProjectileMovement->StopMovementImmediately();
 	SetActorEnableCollision(false);

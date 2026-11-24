@@ -10,6 +10,8 @@ class USphereComponent;
 class UProjectileMovementComponent;
 class UParticleSystemComponent;
 class UParticleSystem;
+class UNiagaraSystem;
+class UNiagaraComponent;
 
 UCLASS(Abstract)
 class SHOWPROJECT_API ASProjectile : public AActor
@@ -29,10 +31,10 @@ protected:
 	TObjectPtr<UProjectileMovementComponent> ProjectileMovement;
 
 	UPROPERTY(VisibleAnywhere)
-	TObjectPtr<UParticleSystemComponent> ParticleSystem;
+	TObjectPtr<UNiagaraComponent> ParticleSystem;
 
 	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<UParticleSystem> TriggerVFX;
+	TObjectPtr<UNiagaraSystem> TriggerVFX;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly);
 	float SphereRadius;
