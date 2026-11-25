@@ -39,6 +39,9 @@ protected:
 	UPROPERTY()
 	bool bIsPaused;
 
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere)
+	bool bShouldProcessInput = true;
+
 	virtual void SetupInputComponent() override;
 
 	virtual void OnPossess(APawn* Pawn) override;

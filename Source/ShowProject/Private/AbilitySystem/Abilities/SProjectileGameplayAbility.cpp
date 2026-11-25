@@ -72,10 +72,7 @@ void USProjectileGameplayAbility::SpawnProjectile()
 
 void USProjectileGameplayAbility::EventReceived(FGameplayTag EventTag, FGameplayEventData EventData)
 {
-	/*if (EventTag.MatchesTag(FSGameplayTags::Get().Abilities_Projectile_Basic))
-	{*/
 		SpawnProjectile();
-	//}
 }
 
 void USProjectileGameplayAbility::OnMontageEndEvent(FGameplayTag EventTag, FGameplayEventData EventData)

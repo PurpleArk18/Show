@@ -82,12 +82,18 @@ void ASPlayerController::InitializePlayerVM()
 
 void ASPlayerController::OnPrimaryAction()
 {
-    AbilityInputTagHeld(PrimaryActionTag);
+    if (bShouldProcessInput)
+    {
+        AbilityInputTagHeld(PrimaryActionTag);
+    }
 }
 
 void ASPlayerController::OnSecondaryAction()
 {
-    AbilityInputTagHeld(SecondaryActionTag);
+    if (bShouldProcessInput)
+    {
+        AbilityInputTagHeld(SecondaryActionTag);
+    }
 }
 
 void ASPlayerController::OnPause()
@@ -99,6 +105,7 @@ void ASPlayerController::OnPause()
     {
         Hud->TogglePause(bIsPaused);
     }
+
 }
 
 void ASPlayerController::OnToggleInventory()
@@ -107,6 +114,7 @@ void ASPlayerController::OnToggleInventory()
     if (Hud)
     {
         Hud->ToggleInventory();
+		bShouldProcessInput = !bShouldProcessInput;
     }
 }
 

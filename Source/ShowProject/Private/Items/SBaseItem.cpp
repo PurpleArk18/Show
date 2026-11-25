@@ -11,13 +11,16 @@ ASBaseItem::ASBaseItem()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	SetReplicates(true);
+	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	SetRootComponent(Root);
 	SphereCollider = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
 	SphereCollider->SetIsReplicated(true);
+	SphereCollider->SetMobility(EComponentMobility::Movable);
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	Mesh->SetIsReplicated(true);
 
-	SetRootComponent(Mesh);
-	SphereCollider->SetupAttachment(Mesh);
+	SphereCollider->SetupAttachment(Root);
+	Mesh->SetupAttachment(Root);
 }
 
 // Called when the game starts or when spawned

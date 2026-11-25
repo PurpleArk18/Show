@@ -22,3 +22,23 @@ USPlayerHUDVM* USGameplayStatics::GetHUDVM(UObject* WorldContextObject)
 	}
 	return nullptr;
 }
+
+TArray<EItemID> USGameplayStatics::GetIDsFromBitmask(uint8 Bitmask)
+{
+	TArray<EItemID> ActiveIDs;
+	const UEnum* EnumPtr = StaticEnum<EItemID>();
+	if (!EnumPtr) return ActiveIDs;
+
+	// NumEnums() - 1 skips the auto-generated _MAX entry
+	for (int32 i = 0; i < EnumPtr->NumEnums() - 1; ++i)
+	{
+		int64 Value = EnumPtr->GetValueByIndex(i);
+
+		if (Value != 0 && (Bitmask & Value) == Value)
+		{
+			ActiveIDs.Add(static_cast<EItemID>(Value));
+		}
+	}
+
+	return ActiveIDs;
+}

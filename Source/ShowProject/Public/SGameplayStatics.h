@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Data/SItemsDataTypes.h"
 #include "SGameplayStatics.generated.h"
 
 class USPlayerHUDVM;
@@ -19,4 +20,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
 	static USPlayerHUDVM* GetHUDVM(UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable, meta = (WorldContext = "WorldContextObject"))
+	static TArray<EItemID> GetIDsFromBitmask(uint8 Bitmask);
 };
